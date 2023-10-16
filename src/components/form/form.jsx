@@ -10,9 +10,12 @@ const Form = () => {
 
     return (
         <div className='form_container'>
-            <div className='border_container'>
+
             <form className='form'>
 
+<div className='header_logo'>
+    <img src='/img/ETH LOGO.svg'/>
+</div>
                 <div className='form_title'>
                     <span>Current value</span>
                     <span>₹ 323</span>
@@ -38,7 +41,6 @@ const Form = () => {
 
                 <input type='submit' value={'Buy'} className='form_button' />
             </form>
-            </div>
         </div>
     );
 }
