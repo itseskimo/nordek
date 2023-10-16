@@ -1,12 +1,26 @@
 import './form.css';
 import Dropdown from '../../elements/dropdown/dropdown';
+import React, { useState, useEffect } from "react";
 
 const Form = () => {
 
 
+    const [price, setPrice] = useState(0);
 
-    const assetOptions = ['Ethereum', 'Bitcoin']; // Add more options as needed
+    useEffect(() => {
 
+        const ws = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            const formattedPrice = parseFloat(data.p).toFixed(2); // Format to two decimal places
+            setPrice(formattedPrice);
+        };
+
+        return () => {
+            ws.close();
+        };
+    }, []);
 
     return (
         <div className='form_container'>
@@ -19,11 +33,11 @@ const Form = () => {
 
                 <div className='form_title'>
                     <span>Current value</span>
-                    <span>₹ 323</span>
+                    <span>$ {price}</span>
                 </div>
 
 
-                <Dropdown options={assetOptions} />
+                <Dropdown />
 
 
                 <div className='input_container'>

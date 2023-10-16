@@ -52,3 +52,36 @@
     border: 1px solid #6E56F840;
     background-color: black;
 }
+
+.search_list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+.search_list-item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 6px;
+}
+.search_list-item > div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.search_list-item > div > img{
+   height: 24px;
+   width: 24px;
+}
+
+.search_list-item:hover{
+    background-color: azure;
+    color: black;
+}
