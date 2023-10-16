@@ -1,0 +1,192 @@
+.form_container {
+    background-color: black;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.form {
+    border-radius: 24px;
+    width: 400px;
+    background-color: #0B0819;
+    border: 1px solid #D9D9D9;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_title>span:nth-child(1) {
+    font-size: 14px;
+    color: #C5C5C5;
+}
+
+.form_title>span:nth-child(2) {
+    font-size: 24px;
+    color: #627EEA;
+    font-weight: 600;
+}
+
+.form_button {
+    background: linear-gradient(94.37deg, #3387D5 -5.94%, #7A06C9 115.34%),
+        linear-gradient(151.31deg, #FFFFFF -57.71%, rgba(255, 255, 255, 0) 82.32%);
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.input_container{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input_container > label{
+    font-size: 14px;
+    color: #C5C5C5;
+}
+
+.input_writable {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    position: relative; /* Ensure the child elements respect the container */
+}
+
+.input_writable > span {
+    position: absolute;
+    right: 10px;
+    color: white; /* Add color if needed */
+}
+
+.input_writable > input {
+    color: white;
+    width: 100%;
+    padding: 12px 0;
+    padding-left: 10px;
+    padding-right: 60px; /* Increased to accommodate the span element */
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #6E56F840;
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+.input_readOnly > input{
+    color: white;
+    width: 100%;
+    padding: 12px 10px;
+    border-radius: 4px;
+    outline: none;
+    background-color: #1C1731;
+    border: none;
+}
+
+
+
+.dropdown_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Styles for the label inside main */
+  .dropdown_container label {
+    font-size: 16px;
+    color: white;
+  }
+  
+  /* Styles for the section with ID 'listField1' */
+  #listField1 {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .dropdown_rotate {
+    transform: rotate(180deg);
+  }
+  
+  /* Styles for the container with border */
+  #listField1>section {
+    width: 100%;
+    padding: 13px;
+    box-sizing: border-box;
+    background-color: #1C1731;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  /* Styles for the text in the container */
+  #listField1>section p {
+    font-size: 13px;
+    font-weight: medium;
+    color: #ccc;
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  /* Styles for the image in the container */
+  .dropdown_state {
+    user-select: none;
+    pointer-events: none;
+    transition: all ease-in 0.1s;
+  }
+  
+  /* Styles for the hidden ul */
+  #hideTxtField1 {
+    width: 100%;
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Styles for the list items in the ul */
+  #hideTxtField1 li {
+    width: 100%;
+    padding: 10px 0;
+    list-style: none;
+    background-color: black;
+    color: white;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transition: background-color 0.4s;
+  }
+  
+  /* Hover effect for list items */
+  #hideTxtField1 li:hover {
+    background-color: #f0f0f0;
+    color: #09090b;
+  }
