@@ -1,36 +1,76 @@
+import React, { useState, useRef, useEffect } from 'react';
+
 import './form.css';
+
+
+const Dropdown = ({ options }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(options[0]);
+    const dropdownRef = useRef(null);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleOptionClick = (option) => {
+        setSelectedOption(option);
+        setIsOpen(false);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+    return (
+
+        <main className='dropdown_container' >
+            <label className=''>Select Asset</label>
+
+            <section id='listField1' ref={dropdownRef} onClick={toggleDropdown}>
+
+                <section className=''>
+                    <p id='selectText1'>{selectedOption}</p>
+                    <svg className={`dropdown_state ${isOpen && 'dropdown_rotate'}`} id='dropdownField1' width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 0H0L7 7L14 0Z" fill="#6E56F8" />
+                    </svg>
+                </section>
+
+
+                <ul className={` ${isOpen ? '' : 'hidden'}`} id='hideTxtField1' >
+                    {options.map((option, index) => (
+                        <li key={index} onClick={() => handleOptionClick(option)}>
+                            {option}
+                        </li>
+                    ))}
+                </ul>
+
+            </section>
+        </main>
+    );
+};
 
 const Form = () => {
 
 
-    function faqToggle(id, e) {
-        let listField = document.getElementById(`listField${id}`)
-        let dropdownField = document.getElementById(`dropdownField${id}`)
-        let hideTxtField = document.getElementById(`hideTxtField${id}`)
-        let selectText = document.getElementById(`selectText${id}`)
-        dropdownField.classList.toggle('dropdown_rotate')
-        hideTxtField.classList.toggle('hidden')
 
-        selectText.innerHTML = e.target.innerText
+    const assetOptions = ['ETH', 'BTC']; // Add more options as needed
 
-        document.addEventListener('click', event => {
-            const isClickInside = listField?.contains(event.target)
-
-            if (!isClickInside) {
-                hideTxtField.classList.add('hidden')
-                dropdownField.classList.remove('dropdown_rotate')
-
-                // The click was OUTSIDE the specifiedElement, do something
-            }
-        })
-
-    }
 
     return (
         <div className='form_container'>
             <form className='form'>
 
-               
+
 
 
                 <div className='form_title'>
@@ -39,31 +79,10 @@ const Form = () => {
                 </div>
 
 
-                <main className='dropdown_container' >
-                    <label className=''>Select Asset</label>
-
-                    <section id='listField1' onClick={(e) => faqToggle(1, e)}>
-
-                        <section className=''>
-                            <p id='selectText1'>ETH</p>
-                            <svg className='dropdown_state' id='dropdownField1' width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 0H0L7 7L14 0Z" fill="#6E56F8" />
-                            </svg>
-                        </section>
+                <Dropdown options={assetOptions} />
 
 
-                        <ul className='hidden' id='hideTxtField1' >
-                            <li className='' >
-                                ETH
-                            </li>
 
-                            <li className='' >
-                                BTC
-                            </li>
-                        </ul>
-
-                    </section>
-                </main>
 
                 <div className='input_container'>
                     <label className='label'>Amount you want to invest</label>
