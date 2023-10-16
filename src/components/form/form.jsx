@@ -10,6 +10,7 @@ const Form = () => {
 
     return (
         <div className='form_container'>
+            <div className='border_container'>
             <form className='form'>
 
                 <div className='form_title'>
@@ -37,6 +38,7 @@ const Form = () => {
 
                 <input type='submit' value={'Buy'} className='form_button' />
             </form>
+            </div>
         </div>
     );
 }

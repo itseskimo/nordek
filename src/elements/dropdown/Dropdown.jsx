@@ -31,8 +31,6 @@ const Dropdown = ({ options }) => {
     return (
 
         <main className='dropdown_container' >
-            <label className=''>Select Asset</label>
-
             <section id='listField1'>
 
                 <section className='' ref={dropdownRef} onClick={toggleDropdown}>
