@@ -5,7 +5,7 @@ const Form = () => {
 
 
 
-    const assetOptions = ['ETH', 'BTC']; // Add more options as needed
+    const assetOptions = ['Ethereum', 'Bitcoin']; // Add more options as needed
 
 
     return (
@@ -13,9 +13,10 @@ const Form = () => {
 
             <form className='form'>
 
-<div className='header_logo'>
-    <img src='/img/ETH LOGO.svg'/>
-</div>
+                <div className='header_logo'>
+                    <img src='/img/ETH LOGO.svg' />
+                </div>
+
                 <div className='form_title'>
                     <span>Current value</span>
                     <span>₹ 323</span>

@@ -34,7 +34,11 @@ const Dropdown = ({ options }) => {
             <section id='listField1'>
 
                 <section className='' ref={dropdownRef} onClick={toggleDropdown}>
-                    <p id='selectText1'>{selectedOption}</p>
+                    <div className='selected_item'>
+                        <img src='/img/ETH LOGO.svg' alt='coin' />
+                        <p id='selectText1'>{selectedOption}</p>
+                    </div>
+
                     <svg className={`dropdown_state ${isOpen && 'dropdown_rotate'}`} id='dropdownField1' width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 0H0L7 7L14 0Z" fill="#6E56F8" />
                     </svg>
