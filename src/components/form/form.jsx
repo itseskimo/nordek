@@ -1,5 +1,5 @@
 import './form.css';
-import Dropdown from '../../elements/dropdown/dropdown';
+import Dropdown from '../../elements/dropdown/Dropdown';
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 
