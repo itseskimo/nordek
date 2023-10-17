@@ -4,26 +4,37 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 
 const Form = () => {
-    const { checkedItem } = useSelector((state) => state.form)
+    // Get the selected coin data from the Redux state
+    const { checkedItem } = useSelector((state) => state.form);
 
-    const [userInvested, setUserInvested] = useState('')
+    // Initialize state for the amount the client wants to invest
+    const [userInvested, setUserInvested] = useState('');
+
+    // Initialize state to store the current price of the selected coin
     const [price, setPrice] = useState(0);
-    console.log(price)
-    useEffect(() => {
 
+    // Use useEffect to set up a WebSocket connection to get real-time price updates
+    useEffect(() => {
+        // Determine the trading pair based on the selected coin or default to 'btcusdt'
         const tradingPair = checkedItem?.id ? checkedItem?.id : 'btcusdt';
-        const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${tradingPair}@trade`); console.log(ws)
+
+        // Create a WebSocket connection to Binance for price updates
+        const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${tradingPair}@trade`);
+
+        // Event handler for incoming WebSocket messages (price updates)
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             const formattedPrice = parseFloat(data.p).toFixed(2); // Format to two decimal places
             setPrice(formattedPrice);
         };
 
+        // Clean up the WebSocket connection when the component unmounts
         return () => {
             ws.close();
         };
     }, [checkedItem]);
 
+    // Function to calculate the amount of the selected coin the user will get for a given INR investment
     function calculateCoinAmount(inrAmount, exchangeRate, btcPrice) {
         // Convert INR to USD
         const usdAmount = inrAmount / exchangeRate;
@@ -31,26 +42,28 @@ const Form = () => {
         // Calculate the BTC amount
         const coinAmount = usdAmount / btcPrice;
 
-        // Round to 6 decimal places
+        // Round to 2 decimal places
         return coinAmount.toFixed(2);
     }
 
-    // Usage example
+    // Example exchange rate and INR amount (You can replace these with actual values)
     const inrAmount = userInvested; // Amount in INR
     const exchangeRate = 82; // 1 USD = 82 INR
 
+    // Calculate the estimated number of coins the user will get for the entered INR investment
     const coinAmount = calculateCoinAmount(inrAmount, exchangeRate, price);
 
+    // Function to handle form submission (currently empty)
     function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault(); // Prevent the form from submitting
+        // You can add code here to handle the form submission, like sending data to the server.
     }
+
     return (
         <div className='form_container'>
-
             <form className='form' onSubmit={handleSubmit}>
-
                 <div className='header_logo'>
-                    <img src={`${checkedItem?.url ? checkedItem.url : '/img/BITCOIN LOGO.svg'}`} />
+                    <img src={`${checkedItem?.url ? checkedItem.url : '/img/BITCOIN LOGO.svg'}`} alt="Coin Logo" />
                     <div></div>
                     <span></span>
                 </div>
@@ -60,18 +73,20 @@ const Form = () => {
                     <span>$ {price}</span>
                 </div>
 
-
                 <Dropdown />
-
 
                 <div className='input_container'>
                     <label className='label'>Amount you want to invest</label>
                     <div className='input_writable'>
                         <span>INR</span>
-                        <input type='number' onChange={(e) => setUserInvested(e.target.value)} value={userInvested} placeholder='0.00' />
+                        <input
+                            type='number'
+                            onChange={(e) => setUserInvested(e.target.value)}
+                            value={userInvested}
+                            placeholder='0.00'
+                        />
                     </div>
                 </div>
-
 
                 <div className='input_container input_readOnly'>
                     <label className='label'>Estimate Number of {checkedItem?.id ? checkedItem?.id?.split('usdt')[0].toUpperCase() : 'BTC'} You Will Get</label>

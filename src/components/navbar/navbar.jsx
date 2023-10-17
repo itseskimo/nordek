@@ -1,14 +1,11 @@
 import './Navbar.css'
 import { useState } from 'react'
-
+import { navData } from '../../config/data'
 
 const Navbar = () => {
-
+    //Stores the current active link in navbar
     const [activeId, setActiveId] = useState(0)
-    const navData = [
-        'Trade', 'Earn', 'Support', 'About'
-    ]
-
+   
 
 
 
