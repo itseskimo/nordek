@@ -1,35 +1,40 @@
-.header_logo{
+.header_logo {
   height: 90px;
   width: 90px;
   background-color: #0B0819;
   border-radius: 50%;
   border: 7px solid black;
   position: absolute;
-  top: 0;
+  top: 6px;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.header_logo >img{
-  height: 90%;
-  width: 90%;
+
+.header_logo>img {
+  height: 80%;
+  width: 80%;
+  position: relative;
 }
-/* .header_logo::before{
+
+
+.header_logo::before {
   position: absolute;
   content: '';
-  left: -13px;
-  bottom:  25px;
-  border-top-right-radius: 10px;
-  width: 10px;
-  height: 12px;
+  left: -20px;
+  bottom: 25px;
+  border-top-right-radius: 12px;
+  width: 14px;
+  height: 18px;
   background-color: #0B0819;
-  border-top: 2px solid #6E56F840;
-  border-right: 2px solid #6E56F840;
+  border-top: 1px solid #6E56F840;
+  border-right: 1px solid #6E56F840;
+  z-index: 1;
+}
 
-} */
-.header_logo::after{
+.header_logo::after {
   position: absolute;
   content: '';
   width: 120%;
@@ -37,11 +42,36 @@
   bottom: -7px;
   background-color: transparent;
   border-top: 2px solid #6E56F840;
-  /* border-left: 2px solid #6E56F840;
-  border-right: 2px solid #6E56F840; */
   border-radius: 50%;
   transform: rotate(180deg);
+}
 
+.header_logo>span {
+  position: absolute;
+  content: '';
+  right: -18px;
+  bottom: 26px;
+  border-top-left-radius: 12px;
+  width: 14px;
+  height: 18px;
+  background-color: #0B0819;
+  border-top: 1px solid #6E56F840;
+  border-left: 1px solid #6E56F840;
+  z-index: 1;
+}
+
+.header_logo>div {
+  position: absolute;
+  content: '';
+
+  bottom: 43px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  width: calc(100% + 28px);
+  height: 5px;
+  background-color: black;
+
+  z-index: -1;
 }
 
 
@@ -63,7 +93,7 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
-  background: linear-gradient(to top, transparent,transparent, #6E56F840); 
+  background: linear-gradient(to top, transparent, transparent, #6E56F840);
   position: relative;
 }
 
@@ -135,7 +165,7 @@
 .input_writable>input {
   color: white;
   width: 100%;
-  padding: 12px 0;
+  padding: 14px 0;
   padding-left: 10px;
   padding-right: 60px;
   border-radius: 4px;
@@ -144,107 +174,23 @@
   background-color: #0B0819;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 .input_readOnly>input {
   color: white;
   width: 100%;
-  padding: 12px 10px;
+  padding: 14px 10px;
   border-radius: 4px;
   outline: none;
   background-color: #1C1731;
   border: none;
-}
-
-
-
-.dropdown_container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.dropdown_container label {
-  font-size: 16px;
-  color: white;
-}
-
-#listField1 {
-  position: relative;
-  cursor: pointer;
-}
-
-.dropdown_rotate {
-  transform: rotate(180deg);
-}
-
-.selected_item{
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-.selected_item > img{
-width: 20px;
-height: 20px;
-}
-
-#listField1>section {
-  width: 100%;
-  padding: 12px;
-  box-sizing: border-box;
-  background-color: #1C1731;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-#listField1>section p {
-  font-size: 13px;
-  font-weight: medium;
-  color: #ccc;
-  user-select: none;
-  pointer-events: none;
-}
-
-.dropdown_state {
-  user-select: none;
-  pointer-events: none;
-  transition: all ease-in 0.1s;
-}
-
-#hideTxtField1 {
-  width: 100%;
-  background-color: black;
-  color: white;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
-  position: absolute;
-  z-index: 10;
-}
-
-.hidden {
-  display: none;
-}
-
-#hideTxtField1 li {
-  width: 100%;
-  padding: 10px 0;
-  list-style: none;
-  background-color: black;
-  color: white;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  transition: background-color 0.4s;
-}
-
-#hideTxtField1 li:hover {
-  background-color: #f0f0f0;
-  color: #09090b;
 }

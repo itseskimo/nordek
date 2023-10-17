@@ -1,7 +1,7 @@
 import './cryptosearch.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedData, modalToggler } from '../../redux/features/formSlice/formSlice';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const cryptosearch = () => {
     const { checkedItem } = useSelector((state) => state.form)
@@ -50,7 +50,7 @@ const cryptosearch = () => {
 
 
 
-    
+
     function handleSearch(val) {
         if (val.trim() === '') {
             // If the search input is empty, reset the list to the original data.
@@ -62,7 +62,7 @@ const cryptosearch = () => {
             setCryptoData(array);
         }
     }
-    
+
     return (
         <div className='modal_container'>
             <div className='search_container'>
@@ -83,7 +83,7 @@ const cryptosearch = () => {
                 <section className='search_list'>
                     {
                         cryptoData.map((coin) => (
-                            <div key={coin.id} className='search_list-item' onClick={() => selectItem(coin)}>
+                            <div key={coin.id} className={`${checkedItem.id === coin.id && 'active_item'} search_list-item`} onClick={() => selectItem(coin)}>
                                 <div>
                                     <img src={coin.url} alt={coin.name} />
                                     <span>{coin.name} </span>

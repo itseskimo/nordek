@@ -65,3 +65,34 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+@media(max-width:1040px){
+    .navbar_container {
+       padding: 0 20px;
+    }
+    .nav_links {
+       font-size: 12px;
+       padding: 0 20px;
+    }
+    .nav_button {
+        background: linear-gradient(94.37deg, #3387D5 -5.94%, #7A06C9 115.34%),
+            linear-gradient(151.31deg, #FFFFFF -57.71%, rgba(255, 255, 255, 0) 82.32%);
+        padding: 10px 20px;
+        border: none;
+        color: white;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 12px;
+        cursor: pointer;
+    }
+}
+
+@media(max-width:700px){
+    .navbar_container >img{
+       width: 140px;
+       height: 60px;
+    }
+    .nav_links {
+        padding: 0 10px;
+     }
+}

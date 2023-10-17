@@ -8,11 +8,11 @@ const Form = () => {
 
     const [userInvested, setUserInvested] = useState('')
     const [price, setPrice] = useState(0);
-console.log(price)
+    console.log(price)
     useEffect(() => {
 
         const tradingPair = checkedItem?.id ? checkedItem?.id : 'btcusdt';
-        const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${tradingPair}@trade`);console.log(ws)
+        const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${tradingPair}@trade`); console.log(ws)
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             const formattedPrice = parseFloat(data.p).toFixed(2); // Format to two decimal places
@@ -41,13 +41,18 @@ console.log(price)
 
     const coinAmount = calculateCoinAmount(inrAmount, exchangeRate, price);
 
+    function handleSubmit(e) {
+        e.preventDefault()
+    }
     return (
         <div className='form_container'>
 
-            <form className='form'>
+            <form className='form' onSubmit={handleSubmit}>
 
                 <div className='header_logo'>
                     <img src={`${checkedItem?.url ? checkedItem.url : '/img/BITCOIN LOGO.svg'}`} />
+                    <div></div>
+                    <span></span>
                 </div>
 
                 <div className='form_title'>
@@ -63,14 +68,14 @@ console.log(price)
                     <label className='label'>Amount you want to invest</label>
                     <div className='input_writable'>
                         <span>INR</span>
-                        <input onChange={(e) => setUserInvested(e.target.value)} value={userInvested} />
+                        <input type='number' onChange={(e) => setUserInvested(e.target.value)} value={userInvested} placeholder='0.00' />
                     </div>
                 </div>
 
 
                 <div className='input_container input_readOnly'>
-                    <label className='label'>Estimate Number of ETH You Will Get</label>
-                    <input className='input' placeholder='0.00' value={coinAmount} readOnly/>
+                    <label className='label'>Estimate Number of {checkedItem?.id ? checkedItem?.id?.split('usdt')[0].toUpperCase() : 'BTC'} You Will Get</label>
+                    <input className='input' placeholder='0.00' value={coinAmount} readOnly />
                 </div>
 
                 <input type='submit' value={'Buy'} className='form_button' />
