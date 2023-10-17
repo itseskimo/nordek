@@ -4,7 +4,8 @@ const formSlice = createSlice({
     name: "formSlice",
     initialState: {
         isModal: false,
-        checkedItem:{} 
+        checkedItem:{},
+        loading:true
     },
 
     reducers: {
@@ -14,11 +15,13 @@ const formSlice = createSlice({
         selectedData(state, action) {
             state.checkedItem = action.payload;
         },
- 
+        showLoadingMessage(state, action){
+            state.loading = action.payload;
+        }
     },
 
 
 });
 
 export default formSlice.reducer;
-export const { modalToggler,selectedData} = formSlice.actions
+export const { modalToggler,selectedData,showLoadingMessage} = formSlice.actions

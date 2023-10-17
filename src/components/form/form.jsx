@@ -1,17 +1,23 @@
 import './form.css';
 import Dropdown from '../../elements/dropdown/Dropdown';
 import React, { useState, useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { showLoadingMessage } from '../../redux/features/formSlice/formSlice';
 
 const Form = () => {
-    // Get the selected coin data from the Redux state
-    const { checkedItem } = useSelector((state) => state.form);
+
+    const dispatch = useDispatch()
+    // Get the selected coin data from the Redux state.
+    //Transaction volumes of a coin determine the speed at which we can find the data of a coin hence,
+    // a variable to control the display of a coin if we get the price late
+    const { checkedItem, loading } = useSelector((state) => state.form);
 
     // Initialize state for the amount the client wants to invest
     const [userInvested, setUserInvested] = useState('');
 
     // Initialize state to store the current price of the selected coin
     const [price, setPrice] = useState(0);
+
 
     // Use useEffect to set up a WebSocket connection to get real-time price updates
     useEffect(() => {
@@ -26,6 +32,7 @@ const Form = () => {
             const data = JSON.parse(event.data);
             const formattedPrice = parseFloat(data.p).toFixed(2); // Format to two decimal places
             setPrice(formattedPrice);
+            dispatch(showLoadingMessage(false)); // Set loading to false when data is received
         };
 
         // Clean up the WebSocket connection when the component unmounts
@@ -62,15 +69,19 @@ const Form = () => {
     return (
         <div className='form_container'>
             <form className='form' onSubmit={handleSubmit}>
-                <div className='header_logo'>
-                    <img src={`${checkedItem?.url ? checkedItem.url : '/img/BITCOIN LOGO.svg'}`} alt="Coin Logo" />
+
+                <section className='logo_container'>
+                    <div className='header_logo'>
+                        <img src={`${checkedItem?.url ? checkedItem.url : '/img/BITCOIN LOGO.svg'}`} alt="Coin Logo" />
+                        <span></span>
+                    </div>
                     <div></div>
-                    <span></span>
-                </div>
+                </section>
+
 
                 <div className='form_title'>
                     <span>Current value</span>
-                    <span>$ {price}</span>
+                    <span> {loading ? 'Loading...' :`$ ${price}` }</span>
                 </div>
 
                 <Dropdown />
@@ -84,6 +95,7 @@ const Form = () => {
                             onChange={(e) => setUserInvested(e.target.value)}
                             value={userInvested}
                             placeholder='0.00'
+                            readOnly={loading}
                         />
                     </div>
                 </div>

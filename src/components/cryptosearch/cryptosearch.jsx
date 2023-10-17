@@ -1,6 +1,6 @@
 import './cryptosearch.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedData, modalToggler } from '../../redux/features/formSlice/formSlice';
+import { selectedData, modalToggler,showLoadingMessage } from '../../redux/features/formSlice/formSlice';
 import { useState, useEffect } from 'react';
 import { cryptoList } from '../../config/data';
 
@@ -28,6 +28,7 @@ const cryptosearch = () => {
     // Function to select a cryptocurrency item
     const selectItem = (item) => {
         dispatch(selectedData(item));
+        dispatch(showLoadingMessage(true))
     };
 
     // Initialize state to store the cryptocurrency data
