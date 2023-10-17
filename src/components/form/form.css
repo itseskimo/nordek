@@ -12,6 +12,10 @@
   align-items: center;
   justify-content: center;
 }
+.header_logo >img{
+  height: 90%;
+  width: 90%;
+}
 /* .header_logo::before{
   position: absolute;
   content: '';

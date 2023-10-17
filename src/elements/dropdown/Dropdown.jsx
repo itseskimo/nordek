@@ -1,9 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { modalToggler } from '../../redux/features/formSlice/formSlice';
+
 const Dropdown = () => {
+    const { checkedItem } = useSelector((state) => state.form)
 
     const dispatch = useDispatch()
+
     const toggleDropdown = () => {
         dispatch(modalToggler(true))
     };
@@ -17,8 +19,8 @@ const Dropdown = () => {
 
                 <section className='' onClick={toggleDropdown}>
                     <div className='selected_item'>
-                        <img src='/img/ETH LOGO.svg' alt='coin' />
-                        <p id='selectText1'>ll</p>
+                        <img src={`${checkedItem?.url ? checkedItem.url : '/img/BITCOIN LOGO.svg'}`} />
+                        <p id='selectText1'>{`${checkedItem?.name ? checkedItem.name : 'Bitcoin'}`}</p>
                     </div>
 
                     <svg className={`dropdown_state`} id='dropdownField1' width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">

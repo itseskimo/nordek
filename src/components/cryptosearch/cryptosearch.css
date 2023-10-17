@@ -62,6 +62,9 @@
     display: flex;
     align-items: center;
     z-index: 1;
+    max-height: 200px;
+    overflow-y: scroll;
+
 }
 .search_list-item{
     width: 100%;
@@ -84,4 +87,16 @@
 .search_list-item:hover{
     background-color: azure;
     color: black;
+}
+
+.close_modal-container{
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1;
+
+}
+.close_modal-button{
+    width:20px;
+    height: 20px;
+    cursor: pointer;
 }

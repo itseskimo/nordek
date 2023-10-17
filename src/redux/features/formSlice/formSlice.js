@@ -21,4 +21,4 @@ const formSlice = createSlice({
 });
 
 export default formSlice.reducer;
-export const { modalToggler,checkedItem} = formSlice.actions
+export const { modalToggler,selectedData} = formSlice.actions
