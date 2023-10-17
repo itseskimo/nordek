@@ -101,4 +101,7 @@
         padding: 10px 8px;
         font-size: 10px;
     }
+    .navbar_container {
+        padding: 0 8px;
+     }
 }
