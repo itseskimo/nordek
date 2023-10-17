@@ -112,3 +112,12 @@
     height: 20px;
     cursor: pointer;
 }
+
+
+
+
+@media(max-width:450px) {
+    .search_container {
+        width: 300px;
+    }
+  }
